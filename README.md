@@ -67,10 +67,10 @@ Key Requirements: Finance, SCM, Salesforce integration
 
 ### Section 3: Technical Architecture
 
-Q3.1 @architekt Describe your proposed integration architecture
+Q3.1 @architect Describe your proposed integration architecture
      for connecting D365 with the customer's existing Salesforce CRM.
 
-Q3.2 @architekt What is your recommended environment strategy
+Q3.2 @architect What is your recommended environment strategy
      (DEV, TEST, UAT, PROD) and how does it align with Microsoft LCS?
 
 Q3.3 @research What are the current Microsoft-recommended patterns
@@ -92,7 +92,7 @@ Q4.3 @pm How do you ensure knowledge transfer to the customer's
 Q5.1 @research Which D365 Finance modules are most relevant for
      a discrete manufacturing company? List key features.
 
-Q5.2 @architekt How would you approach data migration from a
+Q5.2 @architect How would you approach data migration from a
      20-year-old SAP system with potential data quality issues?
 ```
 
@@ -132,43 +132,8 @@ SuccessForge was developed to address these challenges through two complementary
 
 SuccessForge follows a modular, layered architecture designed for flexibility and extensibility:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     CLI Interface (Typer)                    │
-├─────────────────────────────────────────────────────────────┤
-│                  Orchestration Layer (LangGraph)             │
-│                                                              │
-│   ┌───────────┐   ┌───────────┐   ┌───────────┐            │
-│   │ Supervisor│   │  Agent    │   │ Workflow  │            │
-│   │   Agent   │──▶│  Runner   │──▶│  Engine   │            │
-│   └───────────┘   └───────────┘   └───────────┘            │
-├─────────────────────────────────────────────────────────────┤
-│                    Agent Layer                               │
-│                                                              │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
-│   │ Research │  │ Projekt- │  │ Solution │  │   ...    │   │
-│   │  Agent   │  │  leiter  │  │ Architekt│  │          │   │
-│   └──────────┘  └──────────┘  └──────────┘  └──────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│                    Tools Layer                               │
-│                                                              │
-│   ┌────────────────┐  ┌────────────────┐  ┌────────────┐   │
-│   │ Knowledge Base │  │   Web Search   │  │   Save     │   │
-│   │    Query       │  │   (Tavily)     │  │  Markdown  │   │
-│   └────────────────┘  └────────────────┘  └────────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│                 RAG Infrastructure                           │
-│                                                              │
-│   ┌──────────────────┐    ┌──────────────────────────────┐ │
-│   │  Chroma Vector   │◀───│  Document Loaders & Chunkers │ │
-│   │    Database      │    │  (PDF, DOCX, XLSX, MD, etc.) │ │
-│   └──────────────────┘    └──────────────────────────────┘ │
-├─────────────────────────────────────────────────────────────┤
-│                    LLM Providers                             │
-│                                                              │
-│        Ollama (Local)    │    OpenAI    │    Claude         │
-└─────────────────────────────────────────────────────────────┘
-```
+multi-agent-architecture.png
+
 
 ### 2.2 Core Technology Stack
 
@@ -264,11 +229,11 @@ The Projektleiter Agent embodies the expertise of an experienced D365 project ma
 - Sprint planning and monitoring (PM-IM-001, PM-IM-002)
 - Go-Live readiness assessment (PM-P-001)
 
-### 3.4 Solution Architekt Agent
+### 3.4 Solution Architect Agent
 
 **Purpose**: Technical design and quality assurance
 
-The Solution Architekt Agent provides technical leadership, ensuring solutions align with Microsoft best practices while meeting business requirements.
+The Solution Architect Agent provides technical leadership, ensuring solutions align with Microsoft best practices while meeting business requirements.
 
 **Key Capabilities**:
 - Solution blueprint development
@@ -406,7 +371,7 @@ Users can query specific agents using mention syntax:
 ask "@research What are the key considerations for D365 Finance data migration?"
 
 # Query the Solution Architect
-ask "@architekt Design an integration pattern for connecting D365 with our CRM system"
+ask "@Architect Design an integration pattern for connecting D365 with our CRM system"
 
 # Query the Project Manager
 ask "@pm Create a risk assessment framework for our go-live phase"
@@ -433,13 +398,13 @@ ERP (20+ years old), standalone MES, and Excel-based planning.
 1. @research What are manufacturing-specific D365 features
    relevant to discrete manufacturing?
 
-2. @architekt Based on the legacy landscape described above,
+2. @Architect Based on the legacy landscape described above,
    what integration pattern should we use for shop floor systems?
 
 3. @pm Considering this is a legacy replacement project,
    what are the key risks during the Implement phase?
 
-4. @architekt How should we approach data migration from a
+4. @Architect How should we approach data migration from a
    20-year-old system with potential data quality issues?
 ```
 
@@ -461,13 +426,13 @@ ERP (20+ years old), standalone MES, and Excel-based planning.
 **Project Kickoff Catalog**: Standard questions for every new engagement
 ```markdown
 1. @research What industry-specific regulations apply?
-2. @architekt What are typical integration points for this industry?
+2. @Architect What are typical integration points for this industry?
 3. @pm What Success by Design milestones apply to this project size?
 ```
 
 **Design Review Catalog**: Technical validation questions
 ```markdown
-1. @architekt Does this design follow Microsoft best practices?
+1. @Architect Does this design follow Microsoft best practices?
 2. @research Are there ISV solutions that address this gap?
 3. @pm What is the change management impact of this design decision?
 ```
@@ -475,7 +440,7 @@ ERP (20+ years old), standalone MES, and Excel-based planning.
 **Go-Live Readiness Catalog**: Pre-launch verification
 ```markdown
 1. @pm Are all Go-Live Readiness criteria from PM-P-001 addressed?
-2. @architekt What technical risks remain unmitigated?
+2. @Architect What technical risks remain unmitigated?
 3. @research What lessons learned from similar go-lives should we consider?
 ```
 
@@ -590,7 +555,7 @@ Manufacturing company, 850 employees, SAP to D365 migration.
 
 ## Questions
 1. @research What D365 modules are relevant for manufacturing?
-2. @architekt Design the integration architecture for Salesforce.
+2. @Architect Design the integration architecture for Salesforce.
 3. @pm Create a risk register following Success by Design.
 ```
 
