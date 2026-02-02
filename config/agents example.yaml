@@ -1,0 +1,76 @@
+# Agent-Konfiguration
+# Hier können LLM-Provider und Modelle für jeden Agent konfiguriert werden.
+#
+# Verfügbare Provider:
+#   - ollama: Lokale LLMs via Ollama
+#   - claude: Anthropic Claude API
+#   - openai: OpenAI API
+#
+# Beispiel-Modelle:
+#   - ollama: llama3, mistral, gpt-oss:20b, etc.
+#   - claude: claude-sonnet-4-20250514, claude-opus-4-20250514
+#   - openai: gpt-4, gpt-4-turbo, gpt-3.5-turbo
+#
+# Verfügbare Tools:
+#   - query_knowledge_base: RAG-Wissensbasis durchsuchen
+#   - list_projects: Projekte in der Wissensbasis auflisten
+#   - web_search: Web-Suche via Tavily
+#   - save_markdown: Ergebnisse als Markdown-Datei speichern
+#   - get_weather: Wetter abfragen (Demo)
+#   - calculate_sum: Zahlen summieren (Demo)
+#   - all: Alle verfügbaren Tools
+#
+# Role Files (System-Prompts):
+#   - role_file: Pfad zur Markdown-Datei relativ zu roles/
+#   - Beispiele:
+#     - "research.md"        -> roles/research.md (ausführlich)
+#     - "de/research.md"     -> roles/de/research.md (minimal, deutsch)
+#     - "en/research.md"     -> roles/en/research.md (minimal, englisch)
+#   - Wenn nicht angegeben: verwendet <agent_name>.md
+
+agents:
+  research:
+    name: "Research Agent"
+    role: "researcher"
+    role_file: "de/research.md"  # Minimal DE (oder: "research.md" für ausführlich)
+    llm_provider: "ollama"
+    model: "gpt-oss:120b-cloud"
+    temperature: 0.3
+    tools:
+      - "web_search"
+      - "query_knowledge_base"
+      - "list_projects"
+      - "save_markdown"
+
+  projektleiter:
+    name: "Projektleiter"
+    role: "project_manager"
+    role_file: "de/projektleiter.md"  # Minimal DE
+    llm_provider: "openai"
+    model: "gpt-4.1"
+    temperature: 0.3
+    tools:
+      - "all"
+
+  architekt:
+    name: "Solution Architekt"
+    role: "architect"
+    role_file: "de/architekt.md"  # Minimal DE
+    llm_provider: "openai"
+    model: "gpt-4.1"
+    temperature: 0.3
+    tools:
+      - "query_knowledge_base"
+      - "list_projects"
+      - "web_search"
+      - "save_markdown"
+
+  supervisor:
+    name: "Supervisor"
+    role: "supervisor"
+    role_file: "de/supervisor.md"  # Minimal DE
+    llm_provider: "openai"
+    model: "gpt-4.1"
+    temperature: 0.3
+    tools:
+      - "delegate_to_agent"
