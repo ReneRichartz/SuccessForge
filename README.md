@@ -134,7 +134,6 @@ SuccessForge follows a modular, layered architecture designed for flexibility an
 
 multi-agent-architecture.png
 
-
 ### 2.2 Core Technology Stack
 
 | Component | Technology | Purpose |
